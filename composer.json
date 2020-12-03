@@ -1,0 +1,19 @@
+{
+    "name": "mylyto/agenda-php",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Adriano M. Martins",
+            "email": "Adriano_mqsmts@outlook.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        }
+    },
+    "description": ""
+}

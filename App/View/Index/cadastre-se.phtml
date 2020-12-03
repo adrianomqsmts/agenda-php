@@ -1,0 +1,28 @@
+  <section class="container-fluid h-100 bg-success" style="background-image: url(img/img.png); background-size: 10%;">
+    <div class="d-flex justify-content-center align-content-center flex-wrap h-100 ">
+      <form action="/cadastrar" method="post" class="w-50 bg-white rounded">
+        <fieldset class="">
+          <legend class="text-center">Login</legend>
+          <div class="form-group">
+            <label for="">Email: </label><small><?= isset($_SESSION["msgEmail"]) ? "<span class=\"text-danger\">" . $_SESSION["msgEmail"]  . "<br></span>" : ""; ?></small>
+            <input type="email" class="form-control" name="email" id="email" required aria-describedby="emailHelpId" placeholder="">
+            <label for="">Senha:</label><small><?= isset($_SESSION["msgSenha"]) ? "<span class=\"text-danger\">" . $_SESSION["msgSenha"] . "<br></span>" : ""; ?></small>
+            <input type="password" class="form-control" name="senha" id="senha" required placeholder="">
+            <br>
+            <div class="text-center">
+              <input name="cadastrar" id="cadastrar" class="btn btn-success pl-5 pr-5" type="submit" value="Cadastrar">
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </section>
+
+  <?php
+  if (isset($_SESSION["msgEmail"])) {
+    unset($_SESSION["msgEmail"]);
+  }
+  if (isset($_SESSION["msgSenha"])) {
+    unset($_SESSION["msgSenha"]);
+  }
+  ?>
