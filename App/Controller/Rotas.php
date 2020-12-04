@@ -10,7 +10,7 @@ class Rotas extends Bootstrap {
 //Atribuindo à elas um controlador e uma função (action)
 	protected function initRotas() {
 
-		$rotas['home'] = array(
+		$rotas['index'] = array(
 			'rota' => '/',
 			'controller' => 'indexController',
 			'action' => 'index'
@@ -34,11 +34,18 @@ class Rotas extends Bootstrap {
 			'action' => 'cadastrar'
 		);
 		
-		$rotas['pagina-inicial'] = array(
-			'rota' => '/pagina-inicial',
-			'controller' => 'indexController',
-			'action' => 'paginaInicial'
+		$rotas['home'] = array(
+			'rota' => '/home',
+			'controller' => 'TarefasController',
+			'action' => 'home'
 		);
+
+		$rotas['cadastrar-tarefa'] = array(
+			'rota' => '/home/cadastrar-tarefas',
+			'controller' => 'TarefasController',
+			'action' => 'cadastrarTarefas'
+		);
+
 		$this->setRotas($rotas);
 	}
 

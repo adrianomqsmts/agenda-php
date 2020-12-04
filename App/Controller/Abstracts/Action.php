@@ -32,7 +32,7 @@ abstract class Action {
 	protected function content() {
 		//Pega o caminho que estamos
 		$classAtual = get_class($this);
-		//REMOVE o caminho inicial
+				//REMOVE o caminho inicial
 		$classAtual = str_replace('App\\Controller\\', '', $classAtual);
 		//Remove a palavra Controller e retorna apenas o nome ex indexController fica index
 		$classAtual = ucfirst(str_replace('Controller', '', $classAtual));

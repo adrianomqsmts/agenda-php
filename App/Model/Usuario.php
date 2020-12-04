@@ -4,14 +4,14 @@ namespace App\Model;
 
 class Usuario {
 
-  	protected $conn;
+  private $conn;
 
 	public function __construct($conn) {
 		$this->conn = $conn;
 	}
 
-		public function getUsuarioID($id){
-		$query = "SELECT * FROM usuario WHERE id = ?";
+	public function getUsuarioID($id){
+		$query = "SELECT * FROM usuarios WHERE id_usuarios = ?";
 		$stmt = $this->conn->prepare($query);
     //Ligando as variáveis aos parâmetros esperados
     $stmt->bind_param("i", $id);
@@ -27,7 +27,7 @@ class Usuario {
 	}
 
 	public function getUsuario($email, $senha){
-		$query = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
+		$query = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
 		$stmt = $this->conn->prepare($query);
     //Ligando as variáveis aos parâmetros esperados
     $stmt->bind_param("ss", $email, $senha);
@@ -42,11 +42,12 @@ class Usuario {
 		}		
 	}
 
-	public function cadastrar($email, $senha){
-		$query = "INSERT INTO usuario (email, senha) VALUES (?, ?)";
+	public function cadastrar($email, $senha, $apelido, $nome){
+		$query = "INSERT INTO usuarios (email, senha, apelido, nome) VALUES (?, ?, ?, ?)";
     $stmt = $this->conn->prepare($query);
     //Ligando as variáveis aos parâmetros esperados
-    $stmt->bind_param("ss", $email, $senha);
+    $stmt->bind_param("ssss", $email, $senha, $apelido, $nome);
+
     //Executando a Instrução SQL
     $stmt->execute();
 	}

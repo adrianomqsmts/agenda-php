@@ -1,16 +1,29 @@
-  <section class="container-fluid h-100 bg-success" style="background-image: url(img/img.png); background-size: 10%;">
+  <section class="container-fluid h-100 bg-success">
     <div class="d-flex justify-content-center align-content-center flex-wrap h-100 ">
-      <form action="/cadastrar" method="post" class="w-50 bg-white rounded">
+      <form action="/cadastrar" method="post" class="w-50 bg-white rounded pl-5 pr-5">
         <fieldset class="">
-          <legend class="text-center">Login</legend>
+          <legend class="text-center">CADASTRAR</legend>
           <div class="form-group">
-            <label for="">Email: </label><small><?= isset($_SESSION["msgEmail"]) ? "<span class=\"text-danger\">" . $_SESSION["msgEmail"]  . "<br></span>" : ""; ?></small>
-            <input type="email" class="form-control" name="email" id="email" required aria-describedby="emailHelpId" placeholder="">
-            <label for="">Senha:</label><small><?= isset($_SESSION["msgSenha"]) ? "<span class=\"text-danger\">" . $_SESSION["msgSenha"] . "<br></span>" : ""; ?></small>
-            <input type="password" class="form-control" name="senha" id="senha" required placeholder="">
+            <label class="pt-1" for="email">Email: </label>
+            <small><?= isset($_SESSION["msgEmail"]) ? "<span class=\"text-danger\">" . $_SESSION["msgEmail"]  . "<br></span>" : ""; ?></small>
+            <input type="email" class="form-control" name="email" id="email" required aria-describedby="emailHelpId" maxlength="150">
+
+            <label class="pt-1" for="senha">Senha:</label>
+            <small><?= isset($_SESSION["msgSenha"]) ? "<span class=\"text-danger\">" . $_SESSION["msgSenha"] . "<br></span>" : ""; ?></small>
+            <input type="password" class="form-control" name="senha" id="senha" required maxlength="45">
+
+            <label class="pt-1" for="apelido">Apelido:</label>
+            <small><?= isset($_SESSION["msgApelido"]) ? "<span class=\"text-danger\">" . $_SESSION["msgApelido"] . "<br></span>" : ""; ?></small>
+            <input type="text" class="form-control" name="apelido" id="apelido" required maxlength="100">
+
+            <label class="pt-1" for="nome">Nome:</label>
+            <small><?= isset($_SESSION["msgNome"]) ? "<span class=\"text-danger\">" . $_SESSION["msgNome"] . "<br></span>" : ""; ?></small>
+            <input type="text" class="form-control" name="nome" id="nome" required maxlength="300">
+
             <br>
             <div class="text-center">
-              <input name="cadastrar" id="cadastrar" class="btn btn-success pl-5 pr-5" type="submit" value="Cadastrar">
+               <a href="/" id="voltar" class="btn btn-danger w-25">Voltar</a>
+              <input name="cadastrar" id="cadastrar" class="btn btn-success w-25" type="submit" value="Cadastrar">
             </div>
           </div>
         </fieldset>

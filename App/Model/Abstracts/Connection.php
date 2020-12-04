@@ -10,7 +10,7 @@ class Connection{
 		$servername = "127.0.0.1";
 		$username = "root";
 		$password = "";
-		$dbname = "framework";
+		$dbname = "agenda";
 
 		// Criando a conexão
 		$conn = new \mysqli($servername, $username, $password, $dbname);

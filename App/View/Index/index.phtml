@@ -1,17 +1,19 @@
-  <section class="container-fluid h-100 bg-success" style="background-image: url(img/img.png); background-size: 2%;">
-    <div class="d-flex justify-content-center align-content-center flex-wrap h-100 ">
-      <form action="/login" method="post" class="w-50 bg-white rounded">
+  <section class="container-fluid h-100 bg-success">
+    <div  class="d-flex justify-content-end w-100 flex-wrap">
+      <a href="/cadastre-se" id="cadastrar" class="btn btn-warning pl-4 pr-4 mt-3">Cadastrar</a>
+    </div>
+    <div class="d-flex justify-content-center align-content-center flex-wrap h-75">
+      <form action="/login" method="post" class="w-25 bg-white rounded shadow pr-5 pl-5">
         <fieldset class="">
-          <legend class="text-center">Login</legend>
+          <legend class="text-center pt-2">Entrar</legend>
           <div class="form-group">
             <small><?= isset($_SESSION["msgLogin"]) ? "<span class=\"text-danger\">" . $_SESSION["msgLogin"] . "<br></span>" : ""; ?></small>
-            <label for="">Email:</label>
+            <label for="email">Email:</label>
             <input type="email" class="form-control" name="email" id="email" required aria-describedby="emailHelpId" placeholder="">
-            <label for="">Senha:</label>
+            <label for="senha" class="pt-1">Senha:</label>
             <input type="password" class="form-control" name="senha" id="senha" required placeholder="">
             <br>
             <div class="text-center">
-              <a href="/cadastre-se" id="cadastrar" class="btn btn-primary pl-4 pr-4">Cadastrar</a>
               <input name="login" id="login" class="btn btn-success pl-5 pr-5" type="submit" value="Login">
             </div>
           </div>
