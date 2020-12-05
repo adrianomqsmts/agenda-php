@@ -1,3 +1,130 @@
-<section>
-  <a name="cadastrar" id="cadastrar" class="btn btn-primary" href="/home/cadastrar-tarefas" role="button">Cadastrar Tarefa</a>
-</section>
+<!-- Page Container -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- The Grid -->
+  <div class="w3-row">
+
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+
+
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+          <h4 class="w3-center">Bem-vindo</h4>
+          <p class="w3-center"><i class="fa fa-user-circle-o text-primary" style="font-size: 5em; " aria-hidden="true"></i></p>
+          <hr>
+          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Nome</p>
+        </div>
+      </div>
+      <br>
+      <!-- Alert Box -->
+
+      <div class=" <?= (isset($_SESSION['msgHome'])) ? "" : "d-none"; ?>  w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
+          <i class="fa fa-remove"></i>
+        </span>
+        <p><strong>Hey!</strong></p>
+        <p> <?=(isset($_SESSION['msgHome'])) ? $_SESSION['msgHome'] : "Ops! Não lembro o que iria falar"; ?></p>
+      </div>
+
+      <!-- End Left Column -->
+    </div>
+
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+              <h1 class="display-4 text-center">Próximos Eventos</h1>
+              <a href="/home/cadastrar/tarefas" class="w3-right p-2 btn-warning btn"> <i class="fa fa-database" aria-hidden="true"></i> Cadastrar Tarefa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <?php foreach ($this->view->tarefas as $tarefa) { ?>
+        <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+          <i class="fa fa-calendar-o w3-left w3-circle w3-margin-right" style="font-size:40px" aria-hidden="true"></i>
+          <p class="w3-right w3-opacity">
+            <?php
+            $atual = new DateTime(date("Y-m-d") . "T" . date("H:m"));
+            $antiga = new DateTime($tarefa["data_conclusao"]);
+            $intervalo = $atual->diff($antiga);
+            echo "Tempo restante: " . $intervalo->format("%y anos, %m meses, %d dias, %H horas e %i minutos!");
+            ?>
+          </p>
+          <h4><?= $tarefa["nome"]; ?></h4><br>
+          <span class="w3-clear"></span>
+          <hr>
+          <p><?= $tarefa["descricao"] ?></p>
+          <div class="w3-row-padding pb-5">
+            <div class="w3-right">
+              <?= $tarefa["data_conclusao"] ?>
+            </div>
+          </div>
+          <div class="w3-row d-flex w3-opacity">
+            <button class="w3-button flex-fill w3-red w3-section" onclick="apagar(<?=$tarefa['id_tarefas']?>);" id="confirmar" title="Excluir"><i class="fa fa-remove"></i></button>
+            <button class="w3-button flex-fill w3-blue w3-section" title="Editar"  onclick="editar(<?=$tarefa['id_tarefas']?>);"><i class="fa fa-edit"></i></button>
+            <button class="w3-button flex-fill w3-green w3-section" title="Concluir"  onclick="concluir(<?=$tarefa['id_tarefas']?>);"><i class="fa fa-check"></i></button>
+          </div>
+        </div>
+      <?php } ?>
+
+
+      <!-- End Middle Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-col m2">
+
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <p>ADS</p>
+      </div>
+      <br>
+
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <p>ADS</p>
+      </div>
+      <br>
+
+
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <p>ADS</p>
+      </div>
+      <br>
+
+      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
+        <p><i class="fa fa-bug w3-xxlarge"></i></p>
+      </div>
+
+      <!-- End Right Column -->
+    </div>
+
+    <!-- End Grid -->
+  </div>
+
+  <!-- End Page Container -->
+</div>
+<br>
+<script>
+  function apagar(id_tarefa) {
+    var resp = confirm("Deseja Mesmo excluir a tarefa?");
+    if (resp) {
+      window.location.href = "/home/tarefa/excluir?id="+id_tarefa;
+    }
+  }
+  function editar(id_tarefa) {
+    window.location.href = "/home/tarefa/editar?id="+id_tarefa;
+  }
+
+  function concluir(id_tarefa) {
+    window.location.href = "/home/tarefa/concluir?id="+id_tarefa;
+  }
+</script>
+<?php
+if (isset($_SESSION["msgHome"])) {
+  unset($_SESSION["msgHome"]);
+}
+?>

@@ -8,12 +8,7 @@ abstract class Action {
 
   // Cria um objeto Vazio que poderemos adicionar propriedades, etc.
 	public function __construct() {
-		$this->view = new \stdClass();
-	}
-
-	protected function dados($dado) {
-		// Cria uma propriedade com o nome da dado
-		$this->view->dado = $dado;
+		$this->view = (object)[];
 	}
 
 	protected function render($view, $layout = NULL, $titulo = NUll) {
